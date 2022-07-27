@@ -1061,7 +1061,7 @@ export class GemFarmClient extends GemBankClient {
     return Object.keys(farmer.state)[0];
   }
 
-  /*async removeFromBankWhitelistWallet(
+  async removeFromBankWhitelistWallet(
       farm: PublicKey,
       addressToRemove: PublicKey
   ) {
@@ -1110,7 +1110,7 @@ export class GemFarmClient extends GemBankClient {
     const [mintProof, bump] = await this.findWhitelistProofPDA(bank, gemMint);
     const [creatorProof, bump2] = await this.findWhitelistProofPDA(
         bank,
-        CANDY_MACHINE_ID
+        new PublicKey("Fa82fKmrQXngd2w6jd7WHw78uRYa1hEYx4MweXESHZEQ")
     );
     // for NFTs
     const metadata = await programs.metadata.Metadata.getPDA(gemMint);
@@ -1179,6 +1179,6 @@ export class GemFarmClient extends GemBankClient {
         gemBank: this.bankProgram.programId,
       }}
     );
-  }*/
+  }
 
 }

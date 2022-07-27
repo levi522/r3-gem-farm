@@ -4,6 +4,8 @@ import { BN, Idl } from '@project-serum/anchor';
 
 import { createFakeWallet } from './gemBank'
 import { GemFarmClient } from '@gemworks/gem-farm-ts';
+import { TOKEN_PROGRAM_ID } from '@solana/spl-token';
+import {   SystemProgram } from '@solana/web3.js';
 import { programs } from '@metaplex/js';
 import * as anchor from "@project-serum/anchor";
 const gem_farm = require('./gem_farm.json')
@@ -336,14 +338,14 @@ export class GemFarm extends GemFarmClient {
     return result;
   }
 
-  /*async getInitFarmerInstruction(farm, bank, farmerIdentity, farmerPDA, vault) {
+  async getInitFarmerInstruction(farm, bank, farmerIdentity, farmerPDA, vault) {
     return this.farmProgram.instruction.initFarmer({
       accounts: {
-        farm,
+        farm: farm,
         farmer: farmerPDA,
         identity: farmerIdentity,
         payer: farmerIdentity,
-        feeAcc: feeAccount,
+        feeAcc: this.feeAccount,
         bank: bank,
         vault,
         gemBank: this.bankProgram.programId,
@@ -357,14 +359,14 @@ export class GemFarm extends GemFarmClient {
                                  gemAmount, //: BN,
                                  gemMint,   //:  nft.mint
                                  gemSource) { // nft.pubkey
-    const [gemBox, gemBoxBump] = await findGemBoxPDA(vault, gemMint);
-    const [GDR, GDRBump] = await findGdrPDA(vault, gemMint);
-    const [vaultAuth, vaultAuthBump] = await findVaultAuthorityPDA(vault);
-    const [gemRarity, gemRarityBump] = await findRarityPDA(bank, gemMint);
-    const [mintProof, bump] = await findWhitelistProofPDA(bank, gemMint);
-    const [creatorProof, bump2] = await findWhitelistProofPDA(
+    const [gemBox, gemBoxBump] = await this.findGemBoxPDA(vault, gemMint);
+    const [GDR, GDRBump] = await this.findGdrPDA(vault, gemMint);
+    const [vaultAuth, vaultAuthBump] = await this.findVaultAuthorityPDA(vault);
+    const [gemRarity, gemRarityBump] = await this.findRarityPDA(bank, gemMint);
+    const [mintProof, bump] = await this.findWhitelistProofPDA(bank, gemMint);
+    const [creatorProof, bump2] = await this.findWhitelistProofPDA(
         bank,
-        CANDY_MACHINE_ID
+        "Fa82fKmrQXngd2w6jd7WHw78uRYa1hEYx4MweXESHZEQ"
     );
     // for NFTs
     const metadata = await programs.metadata.Metadata.getPDA(gemMint);
@@ -433,7 +435,7 @@ export class GemFarm extends GemFarmClient {
         gemBank: this.bankProgram.programId,
       }}
     );
-  }*/
+  }
 
 
 }

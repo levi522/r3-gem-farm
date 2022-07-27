@@ -1,7 +1,7 @@
 import { initGemFarm } from "./gemfarm";
 import { initGemBank } from './gemBank';
 import { BN } from '@project-serum/anchor';
-import { PublicKey } from '@solana/web3.js';
+import { PublicKey,Provider } from '@solana/web3.js';
 import env from "react-dotenv";
 import { fetchFarn, fetchFarmer, beginStaking } from "./staker";
 
@@ -31,11 +31,11 @@ export async function superUnstakeMover(nfts, connection, wallet) {
         console.log("resuming stake.")
         const stakeResult = await beginStaking(gf)
     }
-    // else if(farmerAcc.farmerState === "pendingCooldown") {
-    //     await gf.unstakeWallet(new PublicKey(env.farm_id));
-    //     const withdrawResult = await withdrawNftsOnChain(nfts, gb, bank, vault)
-    //     console.log("end pendingCooldown for:",nfts)
-    // }
+    else if(farmerAcc.farmerState === "pendingCooldown") {
+        await gf.unstakeWallet(new PublicKey(env.farm_id));
+        const withdrawResult = await withdrawNftsOnChain(nfts, gb, bank, vault)
+        console.log("end pendingCooldown for:",nfts)
+    }
     else {
         console.log("farmer stake amount not equal to 1")
         console.log("stake amount: ", farmerAcc.farmerAcc.gemsStaked.toString())

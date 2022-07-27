@@ -102,6 +102,8 @@ export async function stakerMover(nft, connection, wallet) {
     return stakeResult
 }
 
+
+
 export async function stakerMoreMover(nft, connection, wallet) {
     let nftArray = []
     nftArray.push(nft)

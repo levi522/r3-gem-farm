@@ -1,6 +1,6 @@
 import './App.css';
 import { getNFTsByOwner, getNFTMetadataForMany } from './common/getNfts';
-import { fetchFarn, fetchFarmer, stakerMover, endStaking, stakerMoreMover } from './common/staker';
+import {fetchFarn, fetchFarmer, stakerMover, endStaking, stakerMoreMover, stakerMover1111} from './common/staker';
 import { populateVaultNFTs } from './common/getVaultNfts';
 import { useState, useEffect } from 'react';
 import { Connection, PublicKey ,clusterApiUrl } from '@solana/web3.js';
